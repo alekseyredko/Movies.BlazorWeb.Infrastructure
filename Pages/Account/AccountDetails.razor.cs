@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Movies.Data.Results;
 using Movies.Data.Services.Interfaces;
@@ -32,7 +33,7 @@ namespace Movies.BlazorWeb.Infrastructure.Pages.Account
         private IMapper mapper { get; set; }
 
         [Inject]
-        private ServerAuthenticationStateProvider authenticationProvider { get; set; }
+        private AuthenticationStateProvider authenticationProvider { get; set; }
 
         [Inject]
         private NavigationManager NavigationManager { get; set; }
