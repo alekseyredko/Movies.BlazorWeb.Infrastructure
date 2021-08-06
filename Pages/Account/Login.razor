@@ -1,0 +1,13 @@
+﻿@page "/login"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Account
+
+<h3>Log in</h3>
+
+<SpecificErrorResult Result="response" Key="Login" />
+<input type="text" @bind-value="loginUserRequest.Login" />
+
+<SpecificErrorResult Result="response" Key="Password" />
+<input id="Password1" type="password" @bind-value="loginUserRequest.Password" />
+
+<button @onclick="LogUsername">Login</button>

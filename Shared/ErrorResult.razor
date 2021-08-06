@@ -1,0 +1,36 @@
+﻿@namespace Movies.BlazorWeb.Infrastructure.Shared
+
+<div>
+    @if (Result == null)
+    {
+
+    }
+    else
+    {
+        <h2>@Result.Title</h2>
+        if (Result.ResultType != ResultType.Ok)
+        {
+            <table class="table-danger">
+                <tbody>
+                    @foreach (var error in Result.Errors)
+                    {
+                        <tr>
+                            <td><h3>@error.Key: </h3></td>
+                            <td>
+                                <table>
+                                    @foreach (var desc in error.Value)
+                                    {
+                                        <tr>
+                                            <td>@desc</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>

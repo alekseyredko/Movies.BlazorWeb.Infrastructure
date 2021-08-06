@@ -1,0 +1,28 @@
+﻿@namespace Movies.BlazorWeb.Infrastructure.Shared.Entities
+
+
+<td>
+    <NavLink class="nav-justified">@Review.ReviewText</NavLink>
+</td>
+<td>
+    <p>Rate: @Review.Rate</p>
+</td>
+
+<td>
+    @if (canEditAndDelete)
+    {
+        <button class="btn btn-warning" @onclick="GoToEditReview">Update</button>
+    }
+</td>
+<td>
+    @if (canEditAndDelete)
+    {
+        <button class="btn btn-danger" @onclick="ShowDeleteDialog">Delete</button>
+    }
+</td>
+
+
+@if (DynamicRender != null && confirmActionDialogOpen)
+{
+    @DynamicRender
+}

@@ -1,0 +1,32 @@
+﻿@page "/movies/{id:int}"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.MoviesPages
+
+@using Movies.BlazorWeb.Infrastructure.Shared.Entities
+@using Movies.BlazorWeb.Infrastructure.Pages.Reviews
+
+@if (movie == null || currentUser == null)
+{
+    <h3>Loading</h3>
+}
+else
+{
+    @if (movie.ResultType == ResultType.Ok)
+    {
+        <MovieEntity Movie="movie.Value" />
+
+        <ShowReviews MovieId="Id" />
+
+        <AuthorizeView Roles="Reviewer">
+            <Authorized>
+                <NavLink class="nav-link" href="@addReviewLink">Add review</NavLink>
+            </Authorized>
+        </AuthorizeView>
+
+        <Movies.BlazorWeb.Infrastructure.Pages.Chats.MovieChat Id="Id" />
+    }
+    else
+    {
+        <ErrorResult Result=@movie />
+    }
+}

@@ -1,0 +1,28 @@
+﻿@page "/reviews/{id:int}/edit"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Reviews
+
+<h3>EditReview</h3>
+
+@if (result == null || currentUser == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    if (result.ResultType == ResultType.Ok)
+    {
+        <SpecificErrorResult Key="ReviewText" FieldName="Text" Result="updateResult" />
+        <input type="text" @bind-value="reviewRequest.ReviewText" />
+
+        <SpecificErrorResult Key="Rate" Result="updateResult" />
+        <input type="number" @bind-value="reviewRequest.Rate" />
+
+        <button @onclick="EditReviewAsync">Edit</button>
+
+    }
+    else
+    {
+        <ErrorResult Result="result" />
+    }
+}

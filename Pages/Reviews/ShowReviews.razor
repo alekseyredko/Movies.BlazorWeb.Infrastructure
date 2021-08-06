@@ -1,0 +1,36 @@
+﻿@page "/reviews/"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Reviews
+
+<h1>Reviews</h1>
+
+@if (reviews == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (reviews.ResultType == ResultType.Ok)
+    {
+        <AuthorizeView Roles="Reviewer">
+            <Authorized>
+                <div>
+                    <input type="checkbox" name="my-reviews"
+                           @onchange="OnShowOnlyMyReviewsAsync" />
+                    <label for="my-reviews">Only my reviews</label>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <TableTemplate Items="reviews" Context="ReviewResponse">
+            <RowTemplate>
+                <ReviewEntity Review="ReviewResponse" OnActionDoneAsync="OnReviewDeletedAsync" />
+            </RowTemplate>
+        </TableTemplate>
+
+    }
+    else
+    {
+        <ErrorResult Result=@reviews />
+    }
+}

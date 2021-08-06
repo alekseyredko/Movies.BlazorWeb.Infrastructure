@@ -1,0 +1,53 @@
+﻿@page "/account"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Account
+
+<h3>AccountDetails</h3>
+
+@if (user != null)
+{
+    @if (user.ResultType == ResultType.Ok)
+    {
+        <h3>Login: @user.Value.Login</h3>
+
+        @if (!user.Value.Roles.Contains(UserRoles.Producer))
+        {
+            <p>Register as producer:</p>
+            <form>
+                <SpecificErrorResult Key="Country" Result="registerProducerResult" />
+                <input type="text" @bind-value="registerProducerRequest.Country" />
+                <button @onclick="RegisterAsProducer">Register</button>
+            </form>
+        }
+        else
+        {
+            <div>
+                <p>Producer info:</p>
+                <p>Country: @producer.Value.Country</p>
+            </div>
+        }
+
+
+        @if (!user.Value.Roles.Contains(UserRoles.Reviewer))
+        {
+            <p>Register as reviewer:</p>
+            <form>
+                <SpecificErrorResult Key="NickName" Result="registerReviewerResult" />
+                <input type="text" @bind-value="registerReviewerRequest.NickName" />
+                <button @onclick="RegisterAsReviewer">Register</button>
+            </form>
+        }
+        else
+        {
+            <div>
+                <p>Reviewer info:</p>
+                <p>Nickname: @reviewer.Value.NickName</p>
+            </div>
+        }
+
+    }
+    else
+    {
+        <ErrorResult Result="user" />
+    }
+}

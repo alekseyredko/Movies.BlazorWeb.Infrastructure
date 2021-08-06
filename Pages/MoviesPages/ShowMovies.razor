@@ -1,0 +1,41 @@
+﻿@page "/movies"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.MoviesPages
+
+@using Movies.BlazorWeb.Infrastructure.Shared.TableTemplate
+@using Movies.BlazorWeb.Infrastructure.Shared.Entities
+
+<h1>Movies</h1>
+
+@if (movies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @if (movies.ResultType == ResultType.Ok)
+    {
+        <AuthorizeView Roles="Producer">
+            <Authorized>
+                <div>
+                    <input type="checkbox" name="my-movies"
+                           @onchange="OnShowOnlyMyMoviesAsync" />
+                    <label for="my-movies">Only my movies</label>
+                </div>
+                <div>
+                    <NavLink class="nav-link" href="/movies/add">Add Movie</NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
+        <TableTemplate TItem="MovieResponse" Items="movies" Context="MovieResponse">
+            <RowTemplate>
+                <MovieEntity Movie="@MovieResponse" OnActionDoneAsync="OnMovieDeletedAsync" />
+            </RowTemplate>
+        </TableTemplate>
+    }
+    else
+    {
+        <ErrorResult Result=@movies />
+    }
+}

@@ -1,0 +1,29 @@
+﻿@typeparam TItem
+
+@namespace Movies.BlazorWeb.Infrastructure.Shared.TableTemplate
+
+@if (Items == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    @if (Items.ResultType == ResultType.Ok)
+    {
+        <table class="table">
+            <thead>
+                <tr>@TableHeader</tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Items.Value)
+                {
+                    <tr>@RowTemplate(item)</tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <ErrorResult Result="Items">Error</ErrorResult>
+    }
+}

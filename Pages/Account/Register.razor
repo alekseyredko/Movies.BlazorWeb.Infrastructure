@@ -1,0 +1,19 @@
+﻿@page "/register"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Account
+
+<h3>Register</h3>
+
+<SpecificErrorResult Key="Login" Result="result" />
+<input type="text" @bind-value="registerUserRequest.Login" />
+
+<SpecificErrorResult Key="Name" Result="result" />
+<input type="text" @bind-value="registerUserRequest.Name" />
+
+<SpecificErrorResult Key="Password" Result="result" />
+<input type="password" @bind-value="registerUserRequest.Password" />
+
+<button @onclick="TryRegisterAsync">Register</button>
+
+
+

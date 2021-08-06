@@ -1,0 +1,21 @@
+﻿@page "/movies/add"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.MoviesPages
+
+<h3>AddMovie</h3>
+
+<ErrorResult Result="addResult" />
+
+<div>
+    <SpecificErrorResult Result="addResult" Key="MovieName" />
+    <input class="input-group-text" type="text" @bind="@movieRequest.MovieName" />
+</div>
+
+<div>
+    <SpecificErrorResult Result="addResult" Key="Duration" />
+    <input class="input-group-text" type="text" @bind="@movieRequest.Duration" />
+</div>
+
+<div>
+    <button class="btn btn-success" @onclick="AddMovieAsync">Submit</button>
+</div>

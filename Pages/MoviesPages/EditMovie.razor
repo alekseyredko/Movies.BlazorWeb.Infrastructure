@@ -1,0 +1,27 @@
+﻿@page "/movies/{id:int}/edit"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.MoviesPages
+
+<h3>EditMovie</h3>
+
+@if (result == null || currentUser == null)
+{
+    <p>Loading</p>
+}
+else
+{
+    if (result.ResultType == ResultType.Ok)
+    {
+        <SpecificErrorResult Result="updateResult" FieldName="Movie Name" Key="MovieName" />
+        <input type="text" @bind="@movieName" />
+
+        <SpecificErrorResult Result="updateResult" FieldName="Duration" Key="Duration" />
+        <input type="text" @bind="@duration" />
+
+        <button @onclick="UpdateMovieAsync">Submit</button>
+    }
+    else
+    {
+        <ErrorResult Result="result" />
+    }
+}

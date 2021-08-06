@@ -1,0 +1,21 @@
+﻿
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Chats
+
+@if (ChatMessage != null)
+{
+    <li>
+        <p>@ChatMessage.Reviewer.NickName</p>
+        <p>@ChatMessage.Message</p>
+        <p>@ChatMessage.DateTime</p>
+        <button @onclick="@OnReply">Reply</button>
+        <ul level="@Level">
+            @foreach (var child in ChatMessage.Replies)
+            {
+                <Message ChatMessage="@child" Level="@(Level + 1)" OnReplyCallback="@OnChildReply" />
+
+            }
+        </ul>>
+
+
+    </li>
+}

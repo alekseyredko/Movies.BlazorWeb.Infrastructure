@@ -1,0 +1,12 @@
+﻿@page "/"
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Reviews
+
+<AuthorizeView>
+    <Authorized>
+        <p>Welcome</p>
+    </Authorized>
+    <NotAuthorized>
+        <p>Signed out</p>
+    </NotAuthorized>
+</AuthorizeView>
+

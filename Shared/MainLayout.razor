@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+@namespace Movies.BlazorWeb.Infrastructure.Shared
+
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row">
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink class="nav-link" href="/account">Account</NavLink>
+                    <NavLink class="nav-link" href="/logout">Log out</NavLink>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="/login">Log in</NavLink>
+                    <NavLink class="nav-link" href="/register">Register</NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>

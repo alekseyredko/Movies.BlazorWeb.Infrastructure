@@ -1,0 +1,15 @@
+﻿@page "/movies/{MovieId:int}/add-review"
+
+@namespace Movies.BlazorWeb.Infrastructure.Pages.Reviews
+
+<h3>Add Review</h3>
+
+<ErrorResult Result="result" />
+
+<SpecificErrorResult Key="ReviewText" FieldName="Text" Result="result" />
+<input type="text" @bind-value="reviewRequest.ReviewText" />
+
+<SpecificErrorResult Key="Rate" Result="result" />
+<input type="number" @bind-value="reviewRequest.Rate" />
+
+<button @onclick="AddReviewAsync">Add</button>
